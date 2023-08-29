@@ -36,4 +36,5 @@ async function loadGenres() {
   
   if (process.env.SEED_DB) {
     loadGenres();
+    loadUsers();
   }
