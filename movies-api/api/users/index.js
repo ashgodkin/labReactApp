@@ -25,7 +25,11 @@ router.post('/',asyncHandler( async (req, res, next) => {
       return next();
     }
     if (req.query.action === 'register') {
-      await User.create(req.body);
+        if (RegExp(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$/).test(req.body.password)) {
+          await User.create(req.body);
+        } else {
+              res.status(401).json({code: 401,msg: 'Authentication failed: Weak Password'});
+        }
       res.status(201).json({code: 201, msg: 'Successful created new user.'});
     } else {
       const user = await User.findByUserName(req.body.username);
