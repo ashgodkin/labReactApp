@@ -3,6 +3,7 @@ import passportJWT from 'passport-jwt';
 import UserModel from './../api/users/userModel';
 import dotenv from 'dotenv';
 import Strategy from "passport-jwt";
+
 dotenv.config();
 
 const JWTStrategy = passportJWT.Strategy;
